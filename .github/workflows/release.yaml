@@ -25,7 +25,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Test
+      - name: Publish To Maven Central
         uses: gradle/gradle-build-action@v1
         with:
           arguments: publishToSonatype closeAndReleaseSonatypeStagingRepository --no-daemon --info
@@ -47,4 +47,4 @@ jobs:
         with:
           allowUpdates: true
           artifacts: "${{ github.workspace }}/build/libs/*.jar"
-          token: ${{ secrets.RELEASE_TOKEN  }}
+          tag: ${{ github.event.inputs.tag }}
