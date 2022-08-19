@@ -4,16 +4,18 @@ plugins {
   id("java-library")
   id("maven-publish")
   id("groovy")
+  id("signing")
   id("org.springframework.boot") version "2.7.3"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
   id("com.adarshr.test-logger") version "3.2.0"
+  id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
   kotlin("jvm") version "1.7.0"
   kotlin("plugin.spring") version "1.7.0"
 }
 
 group = "dev.blitzcraft"
 description = "The project uniting the SpringBoot tests with Testcontainers"
-version = "0.0.1-SNAPSHOT"
+version = System.getenv("RELEASE_VERSION")?:"LOCAL-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 val testcontainersVersion by extra("1.17.2")
@@ -69,6 +71,24 @@ publishing {
     }
   }
 }
+
+nexusPublishing {
+  repositories {
+    sonatype {
+      nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+      snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+    }
+  }
+}
+
+signing {
+  val signingKey: String? by project
+  val signingPassphrase: String? by project
+  useInMemoryPgpKeys(signingKey, signingPassphrase)
+  sign(publishing.publications["jars"])
+}
+
+
 
 
 java {

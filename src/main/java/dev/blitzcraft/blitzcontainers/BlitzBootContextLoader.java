@@ -28,6 +28,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ContextConfigurationAttributes;
 import org.springframework.test.context.ContextCustomizer;
+import org.springframework.test.context.ContextLoader;
 import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoaderUtils;
 import org.springframework.test.context.support.TestPropertySourceUtils;
@@ -42,6 +43,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A {@link ContextLoader} that can be used to test Spring Boot applications (those that
+ * normally startup using {@link SpringApplication}). Although this loader can be used
+ * directly, most test will instead want to use it with
+ * {@link SpringBootTest @SpringBootTest}.
+ * <p>
+ * The loader supports both standard {@link MergedContextConfiguration} as well as
+ * {@link WebMergedContextConfiguration}. If {@link WebMergedContextConfiguration} is used
+ * the context will either use a mock servlet environment, or start the full embedded web
+ * server.
+ * <p>
+ * If {@code @ActiveProfiles} are provided in the test class they will be used to create
+ * the application context.
+ *
+ * @see SpringBootTest
+ */
 public class BlitzBootContextLoader extends SpringBootContextLoader {
     // Ugly Hack, need to follow https://github.com/spring-projects/spring-boot/issues/15077
 

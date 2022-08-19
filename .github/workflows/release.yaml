@@ -1,0 +1,50 @@
+name: "Release new version"
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release Tag'
+        type: string
+        required: true
+
+jobs:
+  release:
+    name: Release a new version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v3
+
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Test
+        uses: gradle/gradle-build-action@v1
+        with:
+          arguments: publishToSonatype closeAndReleaseSonatypeStagingRepository
+        env:
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.NEXUS_LOGIN }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassphrase: ${{ secrets.SIGNING_PASSPHRASE }}
+          RELEASE_VERSION: ${{ github.event.inputs.tag }}
+
+      - name: Create Tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ github.event.inputs.tag }}
+          message: Release version, v${{ github.event.inputs.tag }}
+
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "${{ github.workspace }}/build/libs/*.jar"
+          token: ${{ secrets.RELEASE_TOKEN  }}
