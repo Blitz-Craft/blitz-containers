@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.time.Duration
 
 plugins {
   id("java-library")
@@ -79,6 +80,10 @@ nexusPublishing {
       snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
     }
   }
+  transitionCheckOptions {
+    maxRetries.set(100)
+    delayBetween.set(Duration.ofSeconds(5))
+  }
 }
 
 signing {
@@ -87,9 +92,6 @@ signing {
   useInMemoryPgpKeys(signingKey, signingPassphrase)
   sign(publishing.publications["jars"])
 }
-
-
-
 
 java {
   withSourcesJar()
