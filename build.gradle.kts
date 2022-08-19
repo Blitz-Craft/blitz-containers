@@ -41,7 +41,7 @@ dependencies {
 
 publishing {
   publications {
-    create<MavenPublication>("jar") {
+    create<MavenPublication>("jars") {
       from(components["java"])
       pom {
         name.set("Blitz-Containers")
@@ -73,6 +73,7 @@ publishing {
 
 java {
   withSourcesJar()
+  withJavadocJar()
 }
 
 repositories {
