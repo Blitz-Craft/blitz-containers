@@ -25,4 +25,4 @@ jobs:
       - name: Test
         uses: gradle/gradle-build-action@v1
         with:
-          arguments: clean check
+          arguments: clean check --no-daemon
