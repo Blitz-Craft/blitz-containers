@@ -12,6 +12,7 @@ plugins {
 }
 
 group = "dev.blitzcraft"
+description = "The project uniting the SpringBoot tests with Testcontainers"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -40,8 +41,31 @@ dependencies {
 
 publishing {
   publications {
-    create<MavenPublication>("maven") {
+    create<MavenPublication>("jar") {
       from(components["java"])
+      pom {
+        name.set("Blitz-Containers")
+        description.set("The project uniting the SpringBoot tests with Testcontainers")
+        url.set("https://blitzcraft.dev")
+        licenses {
+          license {
+            name.set("GNU GENERAL PUBLIC LICENSE, Version 3")
+            url.set("https://gnu.org/licenses/gpl-3.0.txt")
+          }
+        }
+        developers {
+          developer {
+            id.set("blitz-craft")
+            name.set("BlitzCraft")
+            email.set("contact@blitzcraft.dev")
+          }
+        }
+        scm {
+          connection.set("https://github.com/Blitz-Craft/blitz-containers.git")
+          developerConnection.set("git@github.com:Blitz-Craft/blitz-containers.git")
+          url.set("https://github.com/Blitz-Craft/blitz-containers")
+        }
+      }
     }
   }
 }
@@ -62,6 +86,7 @@ tasks.bootJar {
 tasks.jar {
   archiveClassifier.set("")
 }
+
 tasks.withType<KotlinCompile> {
   kotlinOptions {
     freeCompilerArgs = listOf("-Xjsr305=strict")
