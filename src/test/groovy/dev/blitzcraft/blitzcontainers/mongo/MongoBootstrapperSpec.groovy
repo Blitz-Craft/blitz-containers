@@ -16,6 +16,6 @@ class MongoBootstrapperSpec extends Specification {
         that properties, hasEntry(equalTo('spring.data.mongodb.uri'), startsWith('mongodb://'))
     }
 
-    @Mongo(version = "latest")
+    @Mongo(version = "5")
     private class DummyTest {}
 }

@@ -11,7 +11,7 @@ import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
 
-@BlitzDataMongoTest(version = "latest", isNoTableScan = true)
+@BlitzDataMongoTest(version = "5", isNoTableScan = true)
 class BlitzDataMongoTestSpec extends Specification {
 
     @Autowired
