@@ -19,7 +19,6 @@ internal enum class Addon(
       bootstrapper.bootAndGetProperties(testClass)
     }
 
-
   companion object {
     private fun activeAddons(testClass: Class<*>): List<Addon> = values().filter { it.isActivatedOn(testClass) }
 

@@ -1,17 +1,17 @@
 package dev.blitzcraft.blitzcontainers.mongo
 
 import com.mongodb.reactivestreams.client.MongoClients
-import dev.blitzcraft.blitzcontainers.BlitzBootTest
 import org.bson.BsonDocument
 import org.bson.BsonInt64
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.env.Environment
 import reactor.test.StepVerifier
 import spock.lang.Specification
 
 import static org.assertj.core.api.Assertions.assertThat
 
-@BlitzBootTest
+@SpringBootTest
 @Mongo(version = '5')
 class MongoSpec extends Specification {
 

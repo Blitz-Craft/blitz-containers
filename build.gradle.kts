@@ -19,8 +19,8 @@ description = "The project uniting the SpringBoot tests with Testcontainers"
 version = System.getenv("RELEASE_VERSION")?:"LOCAL-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-val testcontainersVersion by extra("1.17.2")
-val spockVersion by extra("2.1-groovy-3.0")
+val testcontainersVersion by extra("1.17.4")
+val spockVersion by extra("2.3-groovy-3.0")
 
 dependencies {
   implementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
@@ -36,7 +36,7 @@ dependencies {
 
   testImplementation("org.spockframework:spock-core:$spockVersion")
   testImplementation("org.spockframework:spock-spring:$spockVersion")
-  testImplementation("org.codehaus.groovy:groovy-all:3.0.11")
+  testImplementation("org.codehaus.groovy:groovy-all:3.0.13")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
   testImplementation("io.projectreactor:reactor-test")
