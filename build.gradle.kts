@@ -25,8 +25,6 @@ val spockVersion by extra("2.3-groovy-3.0")
 dependencies {
   implementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
   implementation("org.testcontainers:mongodb:$testcontainersVersion")
-  implementation("javax.servlet:javax.servlet-api")
-  implementation("org.springframework:spring-web")
   implementation("org.springframework:spring-test")
   implementation("org.springframework.boot:spring-boot-test")
   implementation("org.springframework.boot:spring-boot-test-autoconfigure")
