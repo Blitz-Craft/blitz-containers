@@ -9,11 +9,11 @@ import java.lang.annotation.Inherited
 annotation class Mongo(
 
     /**
-     * The version of the MongoDB image to start up.
+     * The tag of the MongoDB image to start up.
      *
      * @return the Docker image version
      */
-    val version: String,
+    val tag: String,
 
     /**
      * Determines if Mongo Server config <code>notablescan</code> should be activated.

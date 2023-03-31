@@ -12,7 +12,7 @@ import spock.lang.Specification
 import static org.assertj.core.api.Assertions.assertThat
 
 @SpringBootTest
-@Mongo(version = '5')
+@Mongo(tag = '5')
 class MongoSpec extends Specification {
 
     @Autowired

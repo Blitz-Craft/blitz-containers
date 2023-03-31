@@ -6,13 +6,13 @@ import org.springframework.test.context.TestContextAnnotationUtils.findMergedAnn
 internal class MongoBlitzContainersBootstrapper : BlitzContainersBootstrapper {
     override fun bootAndGetProperties(testClass: Class<*>) =
         MongoContainerBootLogic.bootAndGetProperties(
-            getAnnotation(testClass).version,
+            getAnnotation(testClass).tag,
             getAnnotation(testClass).isNoTableScan
         )
 
     override fun containerKey(testClass: Class<*>): String {
         val mongoTestcontainers = getAnnotation(testClass)
-        return "${Mongo::class.java.simpleName}/${mongoTestcontainers.version}/${mongoTestcontainers.isNoTableScan}"
+        return "${Mongo::class.java.simpleName}/${mongoTestcontainers.tag}/${mongoTestcontainers.isNoTableScan}"
     }
 
     private fun getAnnotation(testClass: Class<*>): Mongo =

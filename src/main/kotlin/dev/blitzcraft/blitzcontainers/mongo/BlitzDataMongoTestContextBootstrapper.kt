@@ -9,7 +9,7 @@ internal class BlitzDataMongoTestContextBootstrapper : SpringBootTestContextBoot
     override fun getProperties(testClass: Class<*>): Array<String> {
         val annotation: BlitzDataMongoTest = getCustomAnnotation(testClass)
         val bootAndReturnProperties =
-            { MongoContainerBootLogic.bootAndGetProperties(annotation.version, annotation.isNoTableScan) }
+            { MongoContainerBootLogic.bootAndGetProperties(annotation.tag, annotation.isNoTableScan) }
 
         return annotation.properties +
                 bootOrReuseCompatibleContainer(containerKey(testClass), bootAndReturnProperties)
@@ -22,6 +22,6 @@ internal class BlitzDataMongoTestContextBootstrapper : SpringBootTestContextBoot
 
     private fun containerKey(testClass: Class<*>): String {
         val testcontainersDataMongoTest = getCustomAnnotation(testClass)
-        return "${BlitzDataMongoTest::class.java.simpleName}/${testcontainersDataMongoTest.version}/${testcontainersDataMongoTest.isNoTableScan}"
+        return "${BlitzDataMongoTest::class.java.simpleName}/${testcontainersDataMongoTest.tag}/${testcontainersDataMongoTest.isNoTableScan}"
     }
 }
