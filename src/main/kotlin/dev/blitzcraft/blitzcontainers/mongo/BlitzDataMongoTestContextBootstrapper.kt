@@ -1,27 +1,14 @@
 package dev.blitzcraft.blitzcontainers.mongo
 
-import dev.blitzcraft.blitzcontainers.ContainersCache.bootOrReuseCompatibleContainer
+import dev.blitzcraft.blitzcontainers.BlitzContainerManager
+import dev.blitzcraft.blitzcontainers.findAnnotation
 import org.springframework.boot.test.context.SpringBootTestContextBootstrapper
-import org.springframework.test.context.TestContextAnnotationUtils.findMergedAnnotation
 
-internal class BlitzDataMongoTestContextBootstrapper : SpringBootTestContextBootstrapper() {
+internal class BlitzDataMongoTestContextBootstrapper: SpringBootTestContextBootstrapper() {
 
-    override fun getProperties(testClass: Class<*>): Array<String> {
-        val annotation: BlitzDataMongoTest = getCustomAnnotation(testClass)
-        val bootAndReturnProperties =
-            { MongoContainerBootLogic.bootAndGetProperties(annotation.tag, annotation.isNoTableScan) }
-
-        return annotation.properties +
-                bootOrReuseCompatibleContainer(containerKey(testClass), bootAndReturnProperties)
-                    .map { "${it.key}=${it.value}" }
-    }
-
-
-    private fun getCustomAnnotation(testClass: Class<*>) =
-        requireNotNull(findMergedAnnotation(testClass, BlitzDataMongoTest::class.java))
-
-    private fun containerKey(testClass: Class<*>): String {
-        val testcontainersDataMongoTest = getCustomAnnotation(testClass)
-        return "${BlitzDataMongoTest::class.java.simpleName}/${testcontainersDataMongoTest.tag}/${testcontainersDataMongoTest.isNoTableScan}"
-    }
+  override fun getProperties(testClass: Class<*>): Array<String> {
+    val annotation = testClass.findAnnotation(BlitzDataMongoTest::class.java)
+    return annotation.properties +
+           BlitzContainerManager.startOrReuseContainersFor(annotation.mongo).map { "${it.key}=${it.value}" }
+  }
 }

@@ -9,7 +9,7 @@ import org.springframework.test.context.MergedContextConfiguration
 
 class BlitzContainerContextCustomizerFactory: ContextCustomizerFactory {
   override fun createContextCustomizer(testClass: Class<*>, configAttributes: List<ContextConfigurationAttributes>) =
-    BlitzContainerContextCustomizer(Addon.detectActiveAddonsAndReturnProperties(testClass))
+    BlitzContainerContextCustomizer(BlitzContainerManager.startOrReuseContainersFor(testClass))
 }
 
 class BlitzContainerContextCustomizer(private val addonsProperties: Map<String, Any>): ContextCustomizer {

@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.Duration
 
 plugins {
@@ -6,7 +5,7 @@ plugins {
   id("maven-publish")
   id("groovy")
   id("signing")
-  id("org.springframework.boot") version "2.7.3"
+  id("org.springframework.boot") version "2.7.11"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
   id("com.adarshr.test-logger") version "3.2.0"
   id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
@@ -16,28 +15,29 @@ plugins {
 
 group = "dev.blitzcraft"
 description = "The project uniting the SpringBoot tests with Testcontainers"
-version = System.getenv("RELEASE_VERSION")?:"LOCAL-SNAPSHOT"
+version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-val testcontainersVersion by extra("1.17.4")
+val testcontainersVersion by extra("1.17.6")
 val spockVersion by extra("2.3-groovy-3.0")
 
 dependencies {
   implementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
   implementation("org.testcontainers:mongodb:$testcontainersVersion")
+  implementation("org.testcontainers:gcloud:$testcontainersVersion")
+  implementation("org.junit.jupiter:junit-jupiter-api")
   implementation("org.springframework:spring-test")
   implementation("org.springframework.boot:spring-boot-test")
   implementation("org.springframework.boot:spring-boot-test-autoconfigure")
   implementation("org.testcontainers:junit-jupiter")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  implementation("com.google.cloud:google-cloud-pubsub:1.123.6")
 
-  testImplementation("org.spockframework:spock-core:$spockVersion")
-  testImplementation("org.spockframework:spock-spring:$spockVersion")
-  testImplementation("org.codehaus.groovy:groovy-all:3.0.13")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
   testImplementation("io.projectreactor:reactor-test")
+  testImplementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 }
 
 publishing {
@@ -108,12 +108,23 @@ tasks.jar {
   archiveClassifier.set("")
 }
 
-tasks.withType<KotlinCompile> {
-  kotlinOptions {
-    freeCompilerArgs = listOf("-Xjsr305=strict")
-    jvmTarget = "11"
-  }
-}
-tasks.withType<Test> {
+tasks.test {
   useJUnitPlatform()
+  filter {
+    excludeTestsMatching("BlitzContainerManagerTest")
+  }
+  systemProperties["junit.jupiter.execution.parallel.enabled"] = "true"
+  systemProperties["junit.jupiter.execution.parallel.mode.classes.default"] = "concurrent"
+  systemProperties["junit.jupiter.execution.parallel.mode.default"] = "same_thread"
+}
+
+tasks.check{
+  dependsOn("runBlitzContainerManagerTest")
+}
+
+tasks.register<Test>("runBlitzContainerManagerTest") {
+  useJUnitPlatform()
+  filter {
+    includeTestsMatching("BlitzContainerManagerTest")
+  }
 }
