@@ -8,7 +8,7 @@ on:
 jobs:
   test: 
     name: Test
-    runs-on: runner_tof 
+    runs-on: self-hosted 
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v3
