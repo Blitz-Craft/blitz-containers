@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import org.springframework.stereotype.Component
 import reactor.test.StepVerifier
 
-@BlitzDataMongoTest(mongo = Mongo(tag = "5", isNoTableScan = true))
+@BlitzDataMongoTest(mongo = Mongo(tag = "6", isNoTableScan = true))
 class BlitzDataMongoTestTest {
 
   @Autowired

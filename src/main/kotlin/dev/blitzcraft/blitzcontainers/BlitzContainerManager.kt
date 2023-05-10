@@ -7,7 +7,7 @@ import dev.blitzcraft.blitzcontainers.pubsub.PubSubBlitzContainer
 import org.testcontainers.lifecycle.Startables
 import java.util.concurrent.ConcurrentHashMap
 
-object BlitzContainerManager {
+internal object BlitzContainerManager {
 
   private val containersCache = ConcurrentHashMap<String, BlitzContainer<*, *>>()
   private val containersProvider: Map<Class<out Annotation>, (Annotation) -> BlitzContainer<*, *>> = mapOf(

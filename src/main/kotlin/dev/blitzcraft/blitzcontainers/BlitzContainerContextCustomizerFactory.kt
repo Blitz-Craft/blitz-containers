@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextCustomizer
 import org.springframework.test.context.ContextCustomizerFactory
 import org.springframework.test.context.MergedContextConfiguration
 
-class BlitzContainerContextCustomizerFactory: ContextCustomizerFactory {
+internal class BlitzContainerContextCustomizerFactory: ContextCustomizerFactory {
   override fun createContextCustomizer(testClass: Class<*>, configAttributes: List<ContextConfigurationAttributes>) =
     BlitzContainerContextCustomizer(BlitzContainerManager.startOrReuseContainersFor(testClass))
 }

@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment
 import reactor.test.StepVerifier
 
 @SpringBootTest
-@Mongo(tag = "5", isNoTableScan = true)
+@Mongo(tag = "6", isNoTableScan = true)
 class MongoTest {
 
   @Autowired

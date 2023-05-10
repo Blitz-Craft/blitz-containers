@@ -5,7 +5,7 @@ import dev.blitzcraft.blitzcontainers.pubsub.PubSubFixture
 import org.springframework.test.context.TestContext
 import org.springframework.test.context.TestExecutionListener
 
-class BlitzContainerTestExecutionListener: TestExecutionListener {
+internal class BlitzContainerTestExecutionListener: TestExecutionListener {
 
   private val fixtures: Map<Class<out Annotation>, BlitzContainersFixture> = mapOf(
     PubSub::class.java to PubSubFixture

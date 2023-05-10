@@ -10,11 +10,10 @@ internal class MongoBlitzContainer(annotation: Mongo): BlitzContainer<Mongo, Mon
 
   override fun springProperties() = mapOf("spring.data.mongodb.uri" to container.replicaSetUrl)
 
-  override fun createContainer(): MongoDBContainer {
-    val container = MongoDBContainer(DockerImageName.parse("mongo").withTag(annotation.tag))
-    if (annotation.isNoTableScan) {
-      container.withCommand("--setParameter", "notablescan=1")
+  override fun createContainer() =
+    CustomizedMongoDBContainer(DockerImageName.parse("mongo").withTag(annotation.tag)).apply {
+      if (annotation.isNoTableScan) {
+        withNoTableScan()
+      }
     }
-    return container
-  }
 }

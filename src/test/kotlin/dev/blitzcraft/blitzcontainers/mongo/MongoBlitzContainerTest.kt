@@ -13,7 +13,7 @@ class MongoBlitzContainerTest {
   @Test
   fun `Spring properties contains key for connecting to MongoDB`() {
     // given
-    val mongoBlitzContainer = MongoBlitzContainer(Mongo(tag = "5"))
+    val mongoBlitzContainer = MongoBlitzContainer(Mongo(tag = "6"))
     // when
     mongoBlitzContainer.start()
     // then
@@ -23,7 +23,7 @@ class MongoBlitzContainerTest {
   @Test
   fun `should activate notablescan`() {
     // given
-    val mongoBlitzContainer = MongoBlitzContainer(Mongo(tag = "5", isNoTableScan = true))
+    val mongoBlitzContainer = MongoBlitzContainer(Mongo(tag = "6", isNoTableScan = true))
     mongoBlitzContainer.start()
     val client = MongoClients.create(mongoBlitzContainer.springProperties()["spring.data.mongodb.uri"])
     val collection = client.getDatabase("test").getCollection("mycollection")

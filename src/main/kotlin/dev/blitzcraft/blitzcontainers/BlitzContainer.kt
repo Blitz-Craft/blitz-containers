@@ -3,7 +3,7 @@ package dev.blitzcraft.blitzcontainers
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.lifecycle.Startable
 
-abstract class BlitzContainer<ANNOTATION: Annotation, CONTAINER: GenericContainer<*>>(val annotation: ANNOTATION):
+internal abstract class BlitzContainer<ANNOTATION: Annotation, CONTAINER: GenericContainer<*>>(val annotation: ANNOTATION):
     Startable {
   internal val container by lazy { doCreateContainer() }
 

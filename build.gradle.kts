@@ -18,7 +18,7 @@ description = "The project uniting the SpringBoot tests with Testcontainers"
 version = System.getenv("RELEASE_VERSION") ?: "LOCAL-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-val testcontainersVersion by extra("1.17.6")
+val testcontainersVersion by extra("1.18.0")
 val spockVersion by extra("2.3-groovy-3.0")
 
 dependencies {
