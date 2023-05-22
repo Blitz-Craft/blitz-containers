@@ -30,8 +30,8 @@ dependencies {
 
 ## Supported Containers
 
-1. [MongoDB](features/mongodb)
-2. [Google PubSub](features/pubsub)
+1. [MongoDB](../features/mongodb)
+2. [Google PubSub](../features/pubsub)
 
 {: .tip}
 Please feel free to vote on the issue or create a new one if you want to see a new container supported.
