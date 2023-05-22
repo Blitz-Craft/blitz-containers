@@ -30,11 +30,22 @@ baseurl: /blitz-containers # the subpath of your site, e.g. /blog
 url: https://blitz-craft.github.io # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  Blitz-Craft
-
+readme_index:
+  with_frontmatter: true
 # Build settings
-theme: minima
-plugins:
-  - jekyll-feed
+theme: just-the-docs
+color_scheme: dark
+
+callouts:
+  warning:
+    title: Warning ⚠️
+    color: yellow
+  tip:
+    title: Good to know! ✅
+    color: green
+  danger:
+    title: Attention! Danger! ⛔️
+    color: red
 
 # Exclude from processing.
 # The following items will not be processed, by default.

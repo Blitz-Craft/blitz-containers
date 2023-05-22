@@ -11,3 +11,6 @@ build/
 *.iml
 *.ipr
 out/
+
+_site/
+vendor/

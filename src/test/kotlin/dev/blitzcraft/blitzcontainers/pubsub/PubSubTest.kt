@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit.SECONDS
   tag = "emulators",
   topics = [
     Topic(name = "topic1"),
-    Topic(name = "topic2", subscriptions = [Subscription(name = "sub2a"), Subscription(name = "sub2b")])
+    Topic("topic2",  [Subscription(name = "sub2a"), Subscription(name = "sub2b")])
   ]
 )
 class PubSubTest {

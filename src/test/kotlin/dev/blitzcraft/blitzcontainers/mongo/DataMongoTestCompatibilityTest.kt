@@ -7,17 +7,17 @@ import org.bson.BsonDocument
 import org.bson.BsonString
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.parallel.Execution
-import org.junit.jupiter.api.parallel.ExecutionMode
 import org.springframework.beans.factory.NoSuchBeanDefinitionException
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.context.ApplicationContext
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import org.springframework.stereotype.Component
 import reactor.test.StepVerifier
 
-@BlitzDataMongoTest(mongo = Mongo(tag = "6", isNoTableScan = true))
-class BlitzDataMongoTestTest {
+@DataMongoTest
+@Mongo(tag = "6", isNoTableScan = true)
+class DataMongoTestCompatibilityTest {
 
   @Autowired
   private lateinit var applicationContext: ApplicationContext
