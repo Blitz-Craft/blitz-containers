@@ -22,9 +22,6 @@ concurrency:
 jobs:
   # Build job
   build:
-    defaults:
-      run:
-        working-directory: docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,6 +29,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
+          working-directory: docs
           ruby-version: '3.1' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
@@ -40,6 +38,7 @@ jobs:
         uses: actions/configure-pages@v2
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
+        working-directory: docs
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
