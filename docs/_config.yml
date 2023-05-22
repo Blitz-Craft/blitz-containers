@@ -28,13 +28,13 @@ description: >- # this means to ignore newlines until "baseurl:"
 domain: blitz-craft.github.io
 baseurl: /blitz-containers # the subpath of your site, e.g. /blog
 url: https://blitz-craft.github.io # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
 github_username:  Blitz-Craft
 readme_index:
   with_frontmatter: true
 # Build settings
 theme: just-the-docs
 color_scheme: dark
+permalink: pretty
 callouts:
   warning:
     title: Warning ⚠️
@@ -45,6 +45,9 @@ callouts:
   danger:
     title: Attention! Danger! ⛔️
     color: red
+back_to_top: true
+back_to_top_text: "Back to top"
+enable_copy_code_button: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.

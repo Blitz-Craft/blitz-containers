@@ -2,6 +2,7 @@
 title: MongoDB features
 parent: Features
 nav_order: 1
+layout: default
 ---
 
 {: .no_toc }

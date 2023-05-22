@@ -6,5 +6,5 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 
-gem "jekyll", "~> 4.3"
+gem "jekyll"
 gem "just-the-docs"        # always download the latest release

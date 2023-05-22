@@ -2,6 +2,7 @@
 title: Google PubSub features
 parent: Features
 nav_order: 2
+layout: default
 ---
 {: .no_toc }
 

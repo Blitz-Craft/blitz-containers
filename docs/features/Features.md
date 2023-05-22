@@ -3,6 +3,7 @@ title: Features
 nav_order: 3
 has_children: true
 has_toc: false
+layout: default
 ---
 {: .no_toc }
 

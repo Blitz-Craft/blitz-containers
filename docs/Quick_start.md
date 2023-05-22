@@ -1,6 +1,7 @@
 ---
 title: Quick start
 nav_order: 2
+layout: default
 ---
 
 ## Adding the lib into your project
