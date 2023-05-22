@@ -40,6 +40,6 @@ public class MyHugeTest { ... }
 ```
 
 ## MongoDB support
-[Check this dedicated documentation page for everything about MongoDb](mongodb)
+[Check this dedicated documentation page for everything about MongoDb](../mongodb)
 ## Google PubSub support
-[Check this dedicated documentation page for everything about Google PubSub](pubsub)
+[Check this dedicated documentation page for everything about Google PubSub](../pubsub)
