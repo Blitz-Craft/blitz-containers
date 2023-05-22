@@ -1,6 +1,6 @@
 ---
 title: MongoDB features
-parent: Features
+parent: Features overview
 nav_order: 1
 layout: default
 ---

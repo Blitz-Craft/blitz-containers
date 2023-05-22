@@ -1,6 +1,6 @@
 ---
 title: Google PubSub features
-parent: Features
+parent: Features overview
 nav_order: 2
 layout: default
 ---
