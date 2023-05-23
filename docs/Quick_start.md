@@ -7,7 +7,9 @@ layout: default
 ## Adding the lib into your project
 
 {: .tip}
-To find the latest version take a look on our [Releases](https://github.com/Blitz-Craft/blitz-containers/releases)
+>Here's our actual latest version:
+> 
+>![GitHub release (latest by date)](https://img.shields.io/github/v/release/Blitz-Craft/blitz-containers?label=Latest%20version&style=flat&color=gr)
 
 ### Gradle:
 ```groovy
