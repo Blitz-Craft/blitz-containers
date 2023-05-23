@@ -2,6 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/Blitz-Craft/blitz-containers?style=flat)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Blitz-Craft/blitz-containers?label=Latest%20version&style=flat)
+![GitHub last commit](https://img.shields.io/github/last-commit/Blitz-Craft/blitz-containers)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Blitz-Craft/blitz-containers/test.yaml?style=flat)
 
 [**Click here for documentation**](https://blitz-craft.github.io/blitz-containers/)
