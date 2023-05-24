@@ -60,5 +60,11 @@ class BlitzContainerManagerTest {
     dockerClient.listContainersCmd().withLabelFilter(mapOf("dev.blitzcraft.blitzcontainers" to "true")).exec()
 
   private fun killAllBlitzContainers() =
-    runningBlitzContainers().forEach { dockerClient.killContainerCmd(it.id).exec() }
+    runningBlitzContainers().forEach {
+      try {
+        dockerClient.killContainerCmd(it.id).exec()
+      } catch (e: Exception) {
+        // container may already not be running
+      }
+    }
 }
