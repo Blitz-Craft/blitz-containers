@@ -1,6 +1,6 @@
 package dev.blitzcraft.blitzcontainers.pubsub
 
-import org.springframework.boot.SpringBootConfiguration
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
-@SpringBootConfiguration
+@SpringBootApplication
 class PubSubTestApplication

@@ -3,13 +3,15 @@ package dev.blitzcraft.blitzcontainers
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.lifecycle.Startable
 
-internal abstract class BlitzContainer<ANNOTATION: Annotation, CONTAINER: GenericContainer<*>>(val annotation: ANNOTATION):
+internal abstract class BlitzContainer<out ANNOTATION: Annotation, out CONTAINER: GenericContainer<*>>(annotation: ANNOTATION):
     Startable {
-  internal val container by lazy { doCreateContainer() }
+  protected val container by lazy { doCreateContainer(annotation) }
+  val key by lazy { generateKey(annotation) }
 
-  abstract fun key(): String
   abstract fun springProperties(): Map<String, Any>
-  protected abstract fun createContainer(): CONTAINER
+  abstract fun prepareForTest(annotation: @UnsafeVariance ANNOTATION)
+  protected abstract fun generateKey(annotation: @UnsafeVariance ANNOTATION): String
+  protected abstract fun createContainer(annotation: @UnsafeVariance ANNOTATION): CONTAINER
 
   override fun start() {
     container.start()
@@ -19,13 +21,8 @@ internal abstract class BlitzContainer<ANNOTATION: Annotation, CONTAINER: Generi
     container.stop()
   }
 
-  private fun doCreateContainer() =
-    createContainer().apply {
-      withLabels(
-        mapOf(
-          "dev.blitzcraft.blitzcontainers" to "true",
-          "dev.blitzcraft.blitzcontainers.key" to key(),
-        )
-      )
+  private fun doCreateContainer(annotation: ANNOTATION) =
+    createContainer(annotation).apply {
+      withLabels(mapOf("dev.blitzcraft.blitzcontainers" to "true"))
     }
 }

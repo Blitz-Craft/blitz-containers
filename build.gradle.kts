@@ -3,7 +3,6 @@ import java.time.Duration
 plugins {
   id("java-library")
   id("maven-publish")
-  id("groovy")
   id("signing")
   id("org.springframework.boot") version "2.7.11"
   id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -31,13 +30,15 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-test-autoconfigure")
   implementation("org.testcontainers:junit-jupiter")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("com.google.cloud:google-cloud-pubsub:1.123.6")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
   testImplementation("io.projectreactor:reactor-test")
   testImplementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+  testImplementation(platform("com.google.cloud:spring-cloud-gcp-dependencies:4.3.0"))
+  testImplementation(platform("org.springframework.cloud:spring-cloud-dependencies:2022.0.2"))
+  testImplementation("com.google.cloud:spring-cloud-gcp-starter-pubsub")
 }
 
 publishing {

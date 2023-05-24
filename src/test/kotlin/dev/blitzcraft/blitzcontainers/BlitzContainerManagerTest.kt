@@ -29,7 +29,7 @@ class BlitzContainerManagerTest {
   fun `should start multiple containers`() {
     // when
     val springProperties = BlitzContainerManager.startOrReuseContainersFor(
-      Mongo(tag = "5"),
+      Mongo(tag = "6"),
       PubSub(tag = "emulators", topics = arrayOf(Topic(name = "topic1")))
     )
     // then
@@ -49,9 +49,9 @@ class BlitzContainerManagerTest {
   @Test
   fun `should reuse a container`() {
     // given
-    BlitzContainerManager.startOrReuseContainersFor(Mongo(tag = "5"))
+    BlitzContainerManager.startOrReuseContainersFor(Mongo(tag = "6"))
     // when
-    BlitzContainerManager.startOrReuseContainersFor(Mongo(tag = "5"))
+    BlitzContainerManager.startOrReuseContainersFor(Mongo(tag = "6"))
     // then
     assertThat(runningBlitzContainers()).hasSize(1)
   }

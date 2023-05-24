@@ -6,14 +6,17 @@ import org.testcontainers.utility.DockerImageName
 
 internal class MongoBlitzContainer(annotation: Mongo): BlitzContainer<Mongo, MongoDBContainer>(annotation) {
 
-  override fun key() = "${annotation.annotationClass.java.simpleName}/${annotation.tag}/${annotation.isNoTableScan}"
+  override fun generateKey(annotation: Mongo) =
+    "${annotation.annotationClass.java.simpleName}/${annotation.tag}/${annotation.isNoTableScan}"
 
-  override fun springProperties() = mapOf("spring.data.mongodb.uri" to container.replicaSetUrl)
-
-  override fun createContainer() =
+  override fun createContainer(annotation: Mongo) =
     CustomizedMongoDBContainer(DockerImageName.parse("mongo").withTag(annotation.tag)).apply {
       if (annotation.isNoTableScan) {
         withNoTableScan()
       }
     }
+
+  override fun springProperties() = mapOf("spring.data.mongodb.uri" to container.replicaSetUrl)
+
+  override fun prepareForTest(annotation: Mongo) { /*do nothing */}
 }
