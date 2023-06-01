@@ -12,7 +12,11 @@ import org.springframework.core.env.Environment
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import reactor.test.StepVerifier
 
-@SpringBootTest
+@SpringBootTest(
+  properties = [
+    "spring.cloud.gcp.pubsub.enabled=false"
+  ]
+)
 @Mongo(tag = "6", isNoTableScan = true)
 class MongoTest {
 
