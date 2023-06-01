@@ -1,0 +1,6 @@
+package dev.blitzcraft.blitzcontainers.mariadb
+
+import org.springframework.boot.autoconfigure.SpringBootApplication
+
+@SpringBootApplication
+class JdbcTestApplication

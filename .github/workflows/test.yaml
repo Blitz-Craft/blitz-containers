@@ -6,9 +6,9 @@ on:
       - '**'
 
 jobs:
-  test: 
+  test:
     name: Test
-    runs-on: self-hosted 
+    runs-on: self-hosted
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v3

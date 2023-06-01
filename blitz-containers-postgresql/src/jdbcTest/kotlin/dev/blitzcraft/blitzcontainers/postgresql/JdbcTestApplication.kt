@@ -1,0 +1,6 @@
+package dev.blitzcraft.blitzcontainers.postgresql
+
+import org.springframework.boot.autoconfigure.SpringBootApplication
+
+@SpringBootApplication
+class JdbcTestApplication

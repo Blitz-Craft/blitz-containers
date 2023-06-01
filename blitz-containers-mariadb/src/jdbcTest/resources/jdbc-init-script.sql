@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS jdbc_person
+CREATE TABLE jdbc_person (id INTEGER NOT NULL, name VARCHAR(255), PRIMARY KEY (id))

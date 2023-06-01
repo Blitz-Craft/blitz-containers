@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS r2dbc_person
+CREATE TABLE r2dbc_person (id int8 NOT NULL, name VARCHAR(255), PRIMARY KEY (id))
