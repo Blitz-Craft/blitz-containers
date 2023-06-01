@@ -57,6 +57,19 @@ So, in the given example, the PubSub will have a topic named `topic-to-test` wit
 {: .tip}
 > You should ensure that your application code is configured for the tests to be working with the same topic and subscription.
 
+{: .tip}
+> Handling test data with a message bus like PubSub requires slightly different approach in comparison to the databases.
+> While with databases, it is the user's responsibility to ensure a proper cleanup between the tests, with PubSub it is not so easy to recreate a topic/subscription on-the-fly.
+> 
+> Still, in order to provide maximum security and test independence, the `@PubSub` annotation makes sure that after each test all the messages inside the container are ACK-ed, so that they aren't visible for the next test.
+> That makes reusing the same container safe, saving lots of execution time.
+
+{: .tip}
+> It is advised to implement your integration tests with "slices" approach.
+> 
+> To achieve that, run the tiniest application with only strictly minimal set of components. 
+> Feel free to apply any of the known SpringBoot techniques, like `classes` attribute of a `@SpringBootTest`, dedicated `@SpringBootApplication` with a reduced scan scope, etc.
+
 ### Spring properties automatically set when using the annotation
 
 | Spring property                         | Value                                                      |
