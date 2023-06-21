@@ -12,7 +12,7 @@ internal class CustomizedMariaDBContainer(dockerImageName: DockerImageName):
         waitStrategy = LogMessageWaitStrategy()
           .withRegEx(".*mariadbd: ready for connections.*\\s")
           .withTimes(2)
-          .withStartupTimeout(Duration.of(60, ChronoUnit.SECONDS))
+          .withStartupTimeout(Duration.ofMinutes(3))
       }
 
   override fun waitUntilContainerStarted() {

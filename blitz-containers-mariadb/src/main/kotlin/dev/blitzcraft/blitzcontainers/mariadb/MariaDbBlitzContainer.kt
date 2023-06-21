@@ -12,9 +12,11 @@ internal class MariaDbBlitzContainer(annotation: MariaDb):
     else jdbcProperties()
 
   private fun jdbcProperties() =
-    mapOf("spring.datasource.url" to container.jdbcUrl,
-          "spring.datasource.username" to container.username,
-          "spring.datasource.password" to container.password
+    mapOf(
+      "spring.test.database.replace" to "NONE",
+      "spring.datasource.url" to container.jdbcUrl,
+      "spring.datasource.username" to container.username,
+      "spring.datasource.password" to container.password
     )
 
   private fun r2dbcProperties() =

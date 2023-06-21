@@ -3,6 +3,7 @@ package dev.blitzcraft.blitzcontainers.postgresql
 import dev.blitzcraft.blitzcontainers.BlitzContainer
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName
+import java.time.Duration
 
 internal class PostgreSqlBlitzContainer(annotation: PostgreSql):
     BlitzContainer<PostgreSql, PostgreSQLContainer<*>>(annotation) {
@@ -11,11 +12,12 @@ internal class PostgreSqlBlitzContainer(annotation: PostgreSql):
     if (isR2dbcInClasspath()) r2dbcProperties()
     else jdbcProperties()
 
-
   private fun jdbcProperties() =
-    mapOf("spring.datasource.url" to container.jdbcUrl,
-          "spring.datasource.username" to container.username,
-          "spring.datasource.password" to container.password
+    mapOf(
+      "spring.test.database.replace" to "NONE",
+      "spring.datasource.url" to container.jdbcUrl,
+      "spring.datasource.username" to container.username,
+      "spring.datasource.password" to container.password
     )
 
   private fun r2dbcProperties() =
@@ -26,7 +28,9 @@ internal class PostgreSqlBlitzContainer(annotation: PostgreSql):
 
 
   override fun createContainer(annotation: PostgreSql) =
-    PostgreSQLContainer(DockerImageName.parse("postgres").withTag(annotation.tag))
+    PostgreSQLContainer(DockerImageName
+                          .parse("postgres")
+                          .withTag(annotation.tag)).withStartupTimeout(Duration.ofMinutes(3))
 
   override fun generateKey(annotation: PostgreSql) =
     "${annotation.annotationClass.java.simpleName}/${annotation.tag}"

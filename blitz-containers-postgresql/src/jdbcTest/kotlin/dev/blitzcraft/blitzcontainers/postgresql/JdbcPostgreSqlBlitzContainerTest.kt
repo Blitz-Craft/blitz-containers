@@ -14,7 +14,8 @@ class JdbcPostgreSqlBlitzContainerTest {
     // when
     postgreSqlBlitzContainer.start()
     // then
-    assertThat(postgreSqlBlitzContainer.springProperties).containsKeys("spring.datasource.url",
+    assertThat(postgreSqlBlitzContainer.springProperties).containsKeys("spring.test.database.replace",
+                                                                       "spring.datasource.url",
                                                                        "spring.datasource.username",
                                                                        "spring.datasource.password")
     assertThat(postgreSqlBlitzContainer.springProperties["spring.datasource.url"].toString()).contains("jdbc")

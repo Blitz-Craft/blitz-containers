@@ -23,6 +23,7 @@ dependencies {
   "r2dbcTestImplementation"("org.postgresql:r2dbc-postgresql")
 
   "jdbcTestImplementation"("org.springframework.boot:spring-boot-starter-data-jpa")
+  "jdbcTestImplementation"("org.springframework.boot:spring-boot-starter-data-jdbc")
   "jdbcTestImplementation"("org.postgresql:postgresql")
 }
 

@@ -23,6 +23,7 @@ dependencies {
   "r2dbcTestImplementation"("org.mariadb:r2dbc-mariadb:1.1.2")
 
   "jdbcTestImplementation"("org.springframework.boot:spring-boot-starter-data-jpa")
+  "jdbcTestImplementation"("org.springframework.boot:spring-boot-starter-data-jdbc")
   "jdbcTestImplementation"("org.mariadb.jdbc:mariadb-java-client:3.1.4")
 }
 
