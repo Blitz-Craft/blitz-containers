@@ -7,7 +7,7 @@ import org.springframework.test.context.TestContext
  * and to clean up after test method execution
  * A classpath scan is done by [BlitzContainerTestExecutionListener] to find all the fixtures
  */
-interface BlitzContainersFixture<ANNOTATION: Annotation> {
-  fun setup(annotation: ANNOTATION, testContext: TestContext)
-  fun cleanup(annotation: ANNOTATION, testContext: TestContext)
+interface BlitzContainersFixture<out ANNOTATION: Annotation> {
+  fun setup(annotation: @UnsafeVariance ANNOTATION, testContext: TestContext)
+  fun cleanup(annotation: @UnsafeVariance ANNOTATION, testContext: TestContext)
 }

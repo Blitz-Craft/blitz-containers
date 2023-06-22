@@ -1,9 +1,5 @@
 package dev.blitzcraft.blitzcontainers
 
-import org.reflections.Reflections
-import org.reflections.scanners.Scanners.SubTypes
-import org.reflections.util.ClasspathHelper
-import org.springframework.beans.BeanUtils
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.lifecycle.Startables
 import java.lang.reflect.ParameterizedType
@@ -14,12 +10,8 @@ internal object BlitzContainerManager {
 
   private val containersCache = ConcurrentHashMap<String, BlitzContainer<Annotation, GenericContainer<*>>>()
 
-  @Suppress("UNCHECKED_CAST")
   private val factories =
-    Reflections(ClasspathHelper.forJavaClassPath())
-      .get(SubTypes.of(BlitzContainerFactory::class.java))
-      .map { BeanUtils.instantiateClass(Class.forName(it)) as BlitzContainerFactory<Annotation, *> }
-      .associateBy { it.annotationClass() }
+    BlitzContainersFactoriesLoader.getFactories(BlitzContainerFactory::class.java).associateBy { it.annotationClass() }
 
   fun startOrReuseContainersFor(testClass: Class<*>): Map<String, Any> {
     return startOrReuseContainersFor(*testClass.annotations)
