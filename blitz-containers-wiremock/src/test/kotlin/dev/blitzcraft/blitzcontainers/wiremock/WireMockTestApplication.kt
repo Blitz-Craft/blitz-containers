@@ -1,0 +1,6 @@
+package dev.blitzcraft.blitzcontainers.wiremock
+
+import org.springframework.boot.autoconfigure.SpringBootApplication
+
+@SpringBootApplication
+class WireMockTestApplication

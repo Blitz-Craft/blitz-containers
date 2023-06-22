@@ -41,6 +41,6 @@ jobs:
         run: |
           for folder in ${{ steps.updated-folders.outputs.all_changed_files }}; do
             if [ -f "${folder}/build.gradle.kts" ]; then
-              ./gradlew :${folder}:clean :${folder}:check
+              ./gradlew :${folder}:clean :${folder}:check 
             fi
           done

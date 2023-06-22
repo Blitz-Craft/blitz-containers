@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/extension"
+  },
+  "response": {
+    "status": 200,
+    "body": "Hello world!",
+    "headers": {
+      "Content-Type": "text/plain"
+    },
+    "transformers": ["blitzcraft-header-injector"],
+    "transformerParameters": {
+      "blitzcraftHeaderValue": "Yo !"
+    }
+  }
+}

@@ -5,7 +5,6 @@ import org.testcontainers.lifecycle.Startables
 import java.lang.reflect.ParameterizedType
 import java.util.concurrent.ConcurrentHashMap
 
-
 internal object BlitzContainerManager {
 
   private val containersCache = ConcurrentHashMap<String, BlitzContainer<Annotation, GenericContainer<*>>>()

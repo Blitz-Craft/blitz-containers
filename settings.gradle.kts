@@ -14,4 +14,6 @@ include(
   "blitz-containers-mongo",
   "blitz-containers-mysql",
   "blitz-containers-postgresql",
-  "blitz-containers-pubsub")
+  "blitz-containers-pubsub",
+  "blitz-containers-wiremock",
+  )
